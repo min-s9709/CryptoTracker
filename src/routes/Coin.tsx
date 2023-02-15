@@ -26,7 +26,6 @@ const Header = styled.header`
 
 const Title = styled.h1`
   font-size: 48px;
-  margin-top: 15px;
   color: ${(props) => props.theme.accentColor};
 `;
 
@@ -110,7 +109,7 @@ interface InfoData {
   last_data_at: string;
 }
 
-interface PriceData {
+export interface PriceData {
   id: string;
   name: string;
   symbol: string;
@@ -231,7 +230,7 @@ const Coin = () => {
             </Tab>
           </Tabs>
 
-          <Outlet context={{ coinId }} />
+          <Outlet context={{ coinId, tickersData }} />
         </>
       )}
     </Container>
