@@ -18,7 +18,11 @@ interface ChartProps {
   coinId: string;
 }
 
-const Chart = () => {
+interface IChartDarkProps {
+  isDark: boolean;
+}
+
+const Chart = ({ isDark }: IChartDarkProps) => {
   const { coinId } = useOutletContext<ChartProps>();
   const { isLoading, data } = useQuery<IHistorical[]>(["olcv", coinId], () =>
     fetchCoinHistory(coinId)
@@ -38,7 +42,7 @@ const Chart = () => {
           ]}
           options={{
             theme: {
-              mode: "dark",
+              mode: isDark ? "dark" : "light",
             },
             chart: {
               height: 500,
@@ -74,11 +78,6 @@ const Chart = () => {
               gradient: { gradientToColors: ["#4cd137"], stops: [0, 100] },
             },
             colors: ["#0097e6"],
-            tooltip: {
-              y: {
-                formatter: (value) => `$ ${value}`,
-              },
-            },
           }}
         />
       )}
